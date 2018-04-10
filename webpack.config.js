@@ -45,7 +45,7 @@ const cssDev = [
     loader: "sass-resources-loader",
     options: {
       // Provide path to the file with resources
-      resources: ["./src/scss/app.scss"]
+      resources: ["./src/scss/custom.scss"]
     }
   }
 ];
@@ -59,7 +59,7 @@ const cssProd = ExtractTextPlugin.extract({
       loader: "sass-resources-loader",
       options: {
         // Provide path to the file with resources
-        resources: ["./src/scss/app.scss"]
+        resources: ["./src/scss/custom.scss"]
       }
     }
   ],
@@ -79,7 +79,7 @@ module.exports = {
   //  the entry file
   entry: {
     app: ["./src/js/app.jsx"],
-    contact: "./src/js/contact.js",
+    contact: ["./src/js/contact.js"],
     bootstrap: bootstrapConfig
   },
 

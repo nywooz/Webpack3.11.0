@@ -1,4 +1,7 @@
 const dashboard = require("../css/dashboard.css");
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import '../bootstrap/customizations.scss';
+
 import 'typeface-roboto'
 
 import React from "react";

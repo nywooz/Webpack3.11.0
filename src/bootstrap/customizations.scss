@@ -29,7 +29,13 @@ $casper: #a2b1b8;
 
 
 
+// Bootstrap overrides
+//
+// Copy variables from `node_modules/bootstrap/scss/_variables.scss`
+// to this file to override default values without modifying source files.
 
+// Example overriding primary brand color
+$brand-primary: #ff47bd;
 
 // Your variable overrides path C:\source\Core Products\RealTimeOnLine\\node_modules\bootstrap\scss\_variables.scss
 // $body-bg: #000;
@@ -61,18 +67,6 @@ $theme-colors: (
 // $danger: #00a262 !default;
 // $light: #00a262 !default;
 // $dark: #00a262 !default;
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
