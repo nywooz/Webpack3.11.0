@@ -1,6 +1,6 @@
 import React from "react";
 
-import SelectableMenuList from "./dialog/Mui/Menu";
+//import SelectableMenuList from "./dialog/Mui/Menu";
 
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { muiTheme } from "./dialog/Mui/muiTheme";
@@ -37,7 +37,7 @@ export default class DrawerMenu extends React.Component {
     const tabs = [
       {
         label: "Pages",
-        app: () => <SelectableMenuList items={list} />
+       // app: () => <SelectableMenuList items={list} />
       }
     ];
 

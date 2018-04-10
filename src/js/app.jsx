@@ -4,14 +4,21 @@ import 'typeface-roboto'
 import React from "react";
 import ReactDOM from "react-dom";
 
-import PageContent from "./PageContent.jsx";
+
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
+
+
+
+
 
 
 ReactDOM.render(
-  <PageContent
+  <Welcome
     open={false} />,
   document.querySelector(".container-app")
 );
 
-const nav = document.querySelector(".body-nav");
-const section = document.querySelector(".body-section");

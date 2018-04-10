@@ -21,7 +21,6 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import Button from "./Button";
-import LandingAction from "../js/Mui/paper.jsx";
 import { routes } from "./data/data";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
