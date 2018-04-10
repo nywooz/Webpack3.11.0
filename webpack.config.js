@@ -6,7 +6,7 @@ const webpack = require("webpack");
 const path = require("path");
 const bootstrapEntryPoints = require("./webpack.bootstrap.config");
 const glob = require("glob");
-const PurifyCSSPlugin = require("purifycss-webpack");
+const PurifyCSSPlugin = require("purifycss-webpack"); 
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
