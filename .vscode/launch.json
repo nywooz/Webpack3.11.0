@@ -1,0 +1,35 @@
+{
+  "version": "0.1.0",
+  "configurations": [
+    {
+      "name": "Debug webpack.config.js",
+      "type": "node",
+      "request": "attach",
+      "port": 5858
+    },
+    {
+      "name": "Launch Chrome against localhost, with sourcemaps",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8080/",
+      "sourceMaps": true,
+      "webRoot": "${workspaceRoot}",
+      "sourceMapPathOverrides": {
+        "webpack:///*": "/*"
+      }
+    },
+    {
+      "name": "Attach to Chrome, with sourcemaps",
+      "type": "chrome",
+      "request": "attach",
+      "port": 9222,
+      "sourceMaps": true,
+      /*"diagnosticLogging": true,*/
+      "webRoot": "${workspaceRoot}",
+      "url": "http://localhost:8080/*",
+      "sourceMapPathOverrides": {
+        "webpack:///*": "/*"
+      }
+    }
+  ]
+}
