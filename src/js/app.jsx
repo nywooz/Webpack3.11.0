@@ -1,40 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
+import ReactDOM from "react-dom";
+//import RDnD from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/index";
+//import RDnD from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/index";
 
-//import Knight from "./React DnD/examples/Tutorial/Knight";
+import Board from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/Board";
+import { observe } from "./React DnD/examples/00 Chessboard.1/Tutorial App.1/Game";
 
-import Bin from "../js/React DnD/examples/Tutorial/Knight";
+const rootEl = document.getElementById("root");
 
+observe(knightPosition =>
+  ReactDOM.render(<Board knightPosition={knightPosition} />, rootEl)
+);
 
-ReactDOM.render(<Knight />, document.querySelector("#root"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//ReactDOM.render(<RDnD />, document.querySelector("#root"));
 
 
 
