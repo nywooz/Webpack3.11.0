@@ -8,7 +8,7 @@ My Webpack boilerplate
  - clone this repository
  - go into the cloned folder
  - cmd `npm i`
- - cmd `npm run start`
+ - cmd `npm run dev`
  - open url http://localhost:8080/
 
 
@@ -17,3 +17,4 @@ My Webpack boilerplate
 - [ ] Get feedbacks and improve
 - [x] Update to Bootstrap 4
 - [ ] Update to Webpack 4
+f
