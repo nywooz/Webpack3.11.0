@@ -18,10 +18,17 @@ export default class Container extends Component {
           <div style={{ overflow: "hidden", clear: "both" }}>
             <Dustbin />
           </div>
-		  <div style={{ overflow: "hidden", clear: "both" }}>
-		  
-		  
-            <Box name="Glass" />
+          <div style={{ overflow: "hidden", clear: "both" }}>
+            {Icons.map((item, i) => {
+              return (
+                <Box name="Glass">
+                  <div style={icon_div_style}>
+                    <i className="fas fa-chart-pie fa-3x" />
+                  </div>
+                </Box>
+              );
+            })}
+
             <Box name="Banana" />
             <Box name="Paper" />
           </div>
