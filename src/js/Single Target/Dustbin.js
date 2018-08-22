@@ -28,7 +28,7 @@ const style = {
 
 const boxTarget = {
   drop(props, monitor, component) {
-    props && props.onDrag ? props.onDrag() : null;
+    props && props.dropCallback ? props.dropCallback() : null;
     return { name: "Dustbin" };
   }
 };

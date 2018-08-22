@@ -30,6 +30,7 @@ export default class App extends React.Component {
               {Icons.map((item, i) => {
                 return <Box key={i} name={item} icon={item} />
               })}
+              
             </div>
           </div>
         </div>
