@@ -4,7 +4,6 @@ import ReactDOM from "react-dom";
 
 //import TileForm from "./form/Tile";
 //import { tileData } from "./data/data";
-import { MuiThemeProvider, getMuiTheme } from "material-ui";
 //import Dnd from "./React DnD/01 Dustbin/Copy or Move/index";
 //import Dnd from "./React DnD/01 Dustbin/Multiple Targets/index";
 
@@ -75,7 +74,6 @@ class App extends Component {
     return <p >test</p>;
 
     return (
-      <MuiThemeProvider>
         <TileForm
           fullscreen={true}
           modal_root={modal_root}
@@ -85,7 +83,6 @@ class App extends Component {
           open={true}
           title={tableData ? "Edit Tile" : "New Tile"}
         />
-      </MuiThemeProvider>
     );
   }
 }

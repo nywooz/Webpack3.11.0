@@ -18,6 +18,11 @@ const App = () => (
     <code>
       const EnhancedComponent = higherOrderComponent(WrappedComponent);
     </code>
+
+
+
+
+    
   </div>
 );
 
