@@ -21,10 +21,14 @@ const style = {
   // height: "100%",
   // width: "100%",
   // position: "absolute"
+
+  activeColor: "darkgreen",
+  candropColor: "darkkhaki"
 };
 
 const boxTarget = {
-  drop() {
+  drop(props, monitor, component) {
+    props && props.onDrag ? props.onDrag() : null;
     return { name: "Dustbin" };
   }
 };
@@ -50,11 +54,9 @@ export default class Dustbin extends Component {
     let backgroundColor = style.backgroundColor;
 
     if (isActive) {
-      this.props.onDrag ? this.props.onDrag() : null;
-
-      backgroundColor = style.backgroundColor; // "darkgreen";
+      backgroundColor = style.activeColor;
     } else if (canDrop) {
-      backgroundColor = style.backgroundColor; // "darkkhaki";
+      backgroundColor = style.candropColor;
     }
 
     return connectDropTarget(

@@ -125,6 +125,19 @@ export default class AddRemoveLayout extends React.PureComponent {
     this.onAddItem();
   }
 
+  html_onDragEnter(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("html_onDragEnter");
+    // this.onAddItem();
+  }
+
+  html_onDrop(e){
+    console.log("html_onDrop");
+
+    this.onAddItem();
+  }
+
   // Calls on each drag movement.
   onDrag() {
     console.log("rgl: onDrag");
@@ -152,19 +165,25 @@ export default class AddRemoveLayout extends React.PureComponent {
         <button onClick={this.onAddItem}>Add Item</button>
 
         <Dustbin onDrag={this.toolboxDrag}> </Dustbin>
-        <ResponsiveReactGridLayout
-          onDragStart={this.onDragStart}
-          onDrag={this.onDrag}
-          onDragStop={this.onDragStop}
-          onResizeStart={this.onResizeStart}
-          onResize={this.onResize}
-          onResizeStop={this.onResizeStop}
-          onLayoutChange={this.onLayoutChange}
-          onBreakpointChange={this.onBreakpointChange}
-          {...this.props}
+
+        <div
+          onDragEnter={e => this.html_onDragEnter(e)}
+          onDrop={e => this.html_onDrop(e)}
         >
-          {_.map(this.state.items, el => this.createElement(el))}
-        </ResponsiveReactGridLayout>
+          <ResponsiveReactGridLayout
+            onDragStart={this.onDragStart}
+            onDrag={this.onDrag}
+            onDragStop={this.onDragStop}
+            onResizeStart={this.onResizeStart}
+            onResize={this.onResize}
+            onResizeStop={this.onResizeStop}
+            onLayoutChange={this.onLayoutChange}
+            onBreakpointChange={this.onBreakpointChange}
+            {...this.props}
+          >
+            {_.map(this.state.items, el => this.createElement(el))}
+          </ResponsiveReactGridLayout>
+        </div>
       </div>
     );
   }
