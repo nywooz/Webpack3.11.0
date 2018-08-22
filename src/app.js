@@ -24,15 +24,14 @@ const rootEl = document.getElementById("root");
 // import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
 // ReactDOM.render(<AddRemoveLayout />, rootEl);
 
-import Skeleton from "./js/RGL/Skeleton";
-ReactDOM.render(<Skeleton />, rootEl);
-
-// ReactDOM.render(
-//   <h1>Hello, world!</h1>,
-//   document.getElementById('root')
-// );
-//ReactDOM.render(<RDnD />, document.querySelector("#root"));
+// import Skeleton from "./js/RGL/Skeleton";
+// ReactDOM.render(<Skeleton />, rootEl);
 
 
 // import Container from "./js/Single Target/Container";
 // ReactDOM.render(<Container />, rootEl);
+
+
+
+import HOC from "./js/HOC/example1";
+ReactDOM.render(<HOC />, rootEl);
