@@ -7,7 +7,7 @@ import Toolbox from "./Drag-Toolbox";
 import { DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import Dustbin from "../Single Target/Dustbin";
-import Box from "../Single Target/Box";
+import Box from "../Single Target/Toolbox";
 
 const style = { overflow: "hidden", clear: "both" };
 

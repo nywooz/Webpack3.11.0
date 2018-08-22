@@ -18,9 +18,9 @@ const style = {
 
   backgroundColor: "#2222",
   zIndex: "999999999",
-  height: "100%",
-  position: "absolute",
-  width: "100%"
+  // height: "100%",
+  // width: "100%",
+  // position: "absolute"
 };
 
 const boxTarget = {
@@ -41,10 +41,7 @@ export default class Dustbin extends Component {
     canDrop: PropTypes.bool.isRequired
   };
 
-
-  componentWillMount(){
-    
-  }
+  componentWillMount() {}
 
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;
@@ -53,12 +50,11 @@ export default class Dustbin extends Component {
     let backgroundColor = style.backgroundColor;
 
     if (isActive) {
-
       this.props.onDrag ? this.props.onDrag() : null;
 
-      backgroundColor = "darkgreen";
+      backgroundColor = style.backgroundColor; // "darkgreen";
     } else if (canDrop) {
-      backgroundColor = "darkkhaki";
+      backgroundColor = style.backgroundColor; // "darkkhaki";
     }
 
     return connectDropTarget(
