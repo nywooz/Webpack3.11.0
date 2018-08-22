@@ -24,11 +24,12 @@ export default class App extends React.Component {
             <div className="col-11" style={style}>
               <AddRemoveLayout />
             </div>
+
             <div className="col-1" style={style}>
-              <Toolbox />
-              <Box name="Glass" />
-              <Box name="Banana" />
-              <Box name="Paper" />
+
+              {Icons.map((item, i) => {
+                return <Box key={i} name={item} icon={item} />;
+              })}
             </div>
           </div>
         </div>
@@ -39,3 +40,12 @@ export default class App extends React.Component {
 
 // import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
 // ReactDOM.render(<AddRemoveLayout />, rootEl);
+
+
+const Icons = [
+  "fa-chart-pie",
+  "fa-chart-line",
+  "fa-chart-bar",
+  "fa-chart-area",
+  "fa-font"
+];

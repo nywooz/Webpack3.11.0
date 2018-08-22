@@ -19,16 +19,7 @@ export default class Container extends Component {
             <Dustbin />
           </div>
           <div style={{ overflow: "hidden", clear: "both" }}>
-            {Icons.map((item, i) => {
-              return (
-                <Box name="Glass">
-                  <div style={icon_div_style}>
-                    <i className="fas fa-chart-pie fa-3x" />
-                  </div>
-                </Box>
-              );
-            })}
-
+            <Box name="Glass" />
             <Box name="Banana" />
             <Box name="Paper" />
           </div>
@@ -38,10 +29,19 @@ export default class Container extends Component {
   }
 }
 
-const Icons = [
-  "fa-chart-pie",
-  "fa-chart-line",
-  "fa-chart-bar",
-  "fa-chart-area",
-  "fa-font"
-];
+// const Icons = [
+//   "fa-chart-pie",
+//   "fa-chart-line",
+//   "fa-chart-bar",
+//   "fa-chart-area",
+//   "fa-font"
+// ];
+// {Icons.map((item, i) => {
+//   return (
+//     <Box name="Glass">
+//       <div style={icon_div_style}>
+//         <i className="fas fa-chart-pie fa-3x" />
+//       </div>
+//     </Box>
+//   );
+// })}

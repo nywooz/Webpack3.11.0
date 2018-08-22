@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { DragSource } from "react-dnd";
 import ItemTypes from "./ItemTypes";
 
-
 const style = {
   border: "1px dashed gray",
   backgroundColor: "white",
@@ -47,6 +46,19 @@ export default class Box extends Component {
     const { name } = this.props;
     const opacity = isDragging ? 0.4 : 1;
 
-    return connectDragSource(<div style={{ ...style, opacity }}>{name}</div>);
+    return connectDragSource(
+
+      <div style={{ ...style, opacity }}>
+        <div style={icon_div_style}>
+          <i className={"fas " + name + " fa-3x "} />
+        </div>
+      </div>
+    );
   }
 }
+
+const icon_div_style = {
+  margin: "10px",
+  width: "fit-content",
+  background: "#eaeaea"
+};
