@@ -28,7 +28,7 @@ export default class App extends React.Component {
             <div className="col-1" style={style}>
 
               {Icons.map((item, i) => {
-                return <Box key={i} name={item} icon={item} />;
+                return <Box key={i} name={item} icon={item} />
               })}
             </div>
           </div>
