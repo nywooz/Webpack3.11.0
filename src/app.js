@@ -24,12 +24,12 @@ const rootEl = document.getElementById("root");
 // import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
 // ReactDOM.render(<AddRemoveLayout />, rootEl);
 
-import Skeleton from "./js/RGL/Skeleton";
-ReactDOM.render(<Skeleton />, rootEl);
+// import Skeleton from "./js/RGL/Skeleton";
+// ReactDOM.render(<Skeleton />, rootEl);
 
 // import Container from "./js/Single Target/Container";
 // ReactDOM.render(<Container />, rootEl);
 
-// // https://css-tricks.com/what-are-higher-order-components-in-react/
-// import HOC from "./js/HOC/example1";
-// ReactDOM.render(<HOC name="HOC" />, rootEl);
+// https://css-tricks.com/what-are-higher-order-components-in-react/
+import HOC from "./js/HOC/example1";
+ReactDOM.render(<HOC name="HOC" />, rootEl);

@@ -61,7 +61,7 @@ export default class Dustbin extends Component {
 
     return connectDropTarget(
       <div style={{ ...style, backgroundColor }}>
-        {isActive ? "Release to drop" : "Drag a box here"}
+        {isActive ? "Release to drop" : "React DnD Drag a box here"}
       </div>
     );
   }

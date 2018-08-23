@@ -3,6 +3,8 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+
+
 import Dustbin from "../Single Target/Dustbin";
 
 /**
@@ -57,24 +59,26 @@ export default class AddRemoveLayout extends React.PureComponent {
     const i = el.add ? "+" : el.i;
     return (
       <div key={i} data-grid={el}>
-        {el.add ? (
+        <Dustbin2>
+          {el.add ? (
+            <span
+              className="add text"
+              onClick={this.onAddItem}
+              title="You can add an item by clicking here, too."
+            >
+              Add +
+            </span>
+          ) : (
+            <span className="text">{i}</span>
+          )}
           <span
-            className="add text"
-            onClick={this.onAddItem}
-            title="You can add an item by clicking here, too."
+            className="remove"
+            style={removeStyle}
+            onClick={this.onRemoveItem.bind(this, i)}
           >
-            Add +
+            x
           </span>
-        ) : (
-          <span className="text">{i}</span>
-        )}
-        <span
-          className="remove"
-          style={removeStyle}
-          onClick={this.onRemoveItem.bind(this, i)}
-        >
-          x
-        </span>
+        </Dustbin2>
       </div>
     );
   }
@@ -192,6 +196,16 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 }
 
+/**
+ *  Dustbin2
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import ItemTypes from "../Single Target/ItemTypes";
@@ -221,7 +235,7 @@ const style = {
 
 const boxTarget = {
   drop(props, monitor, component) {
-    props && props.toolboxDrop ? props.toolboxDrop() : null;
+    props && props.dropCallback ? props.dropCallback() : null;
     return { name: "Dustbin" };
   }
 };
@@ -232,13 +246,11 @@ const boxTarget = {
   canDrop: monitor.canDrop()
 }))
 class Dustbin2 extends Component {
-  static propTypes = {
-    connectDropTarget: PropTypes.func.isRequired,
-    isOver: PropTypes.bool.isRequired,
-    canDrop: PropTypes.bool.isRequired
-  };
-
-  componentWillMount() {}
+  // static propTypes = {
+  //   connectDropTarget: PropTypes.func.isRequired,
+  //   isOver: PropTypes.bool.isRequired,
+  //   canDrop: PropTypes.bool.isRequired
+  // };
 
   render() {
     const { canDrop, isOver, connectDropTarget } = this.props;

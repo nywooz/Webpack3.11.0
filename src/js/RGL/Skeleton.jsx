@@ -36,7 +36,7 @@ export default class App extends React.Component {
             </div>
 
             <div className="col-1" style={style}>
-              {Icons.map((item, i) => {
+              {icons.map((item, i) => {
                 return (
                   <Box
                     key={i}
@@ -58,7 +58,7 @@ export default class App extends React.Component {
 // import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
 // ReactDOM.render(<AddRemoveLayout />, rootEl);
 
-const Icons = [
+const icons = [
   "fa-chart-pie",
   "fa-chart-line",
   "fa-chart-bar",

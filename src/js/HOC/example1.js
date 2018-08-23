@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Hoc from "./Hoc1";
 
 const App = ({ name }) => (
   <div className="container-fluid">
@@ -18,6 +19,10 @@ const App = ({ name }) => (
     <code>
       const EnhancedComponent = higherOrderComponent(WrappedComponent);
     </code>
+
+    <div>
+      <Hoc />
+    </div>
   </div>
 );
 
@@ -32,23 +37,3 @@ export default App;
  *
  *
  */
-
-//  A component that receives props and renders the children.
-const Username = props => <div>{props.children}</div>;
-
-//
-//  A higher-order component that transforms and returns "usernames" in uppercase
-//
-//  This higher-order component receives a "WrappedComponent" as an argument.
-//  Then it returns "new" component with props passed to it creating a React element
-//
-const hoc = WrappedComponent => props => {
-  debugger;
-  return (
-    <div>
-      <WrappedComponent {...props}>
-        {props.children.toUpperCase()}
-      </WrappedComponent>
-    </div>
-  );
-};
