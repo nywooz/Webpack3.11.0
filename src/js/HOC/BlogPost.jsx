@@ -27,3 +27,14 @@ export default class BlogPost extends React.Component {
     return <TextBlock text={this.state.blogPost} />;
   }
 }
+
+/**
+    The first parameter is the wrapped component. 
+    The second parameter retrieves the data we’re interested in, 
+    given a DataSource and the current props.  
+ */
+
+const BlogPostWithSubscription = withSubscription(
+  BlogPost,
+  (DataSource, props) => DataSource.getBlogPost(props.id)
+);
