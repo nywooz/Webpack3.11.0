@@ -32,6 +32,7 @@ export default class AddRemoveLayout extends React.PureComponent {
       }),
       newCounter: 0
     };
+    this.canvasRef = React.createRef();
 
     this.onDragStart = this.onDragStart.bind(this);
     this.onDrag = this.onDrag.bind(this);
@@ -168,9 +169,11 @@ export default class AddRemoveLayout extends React.PureComponent {
 
         <div
           onDragEnter={e => this.html_onDragEnter(e)}
+          onDragOver={this.preventDefault}
           onDrop={e => this.html_onDrop(e)}
         >
           <ResponsiveReactGridLayout
+            ref={this.canvasRef}
             onDragStart={this.onDragStart}
             onDrag={this.onDrag}
             onDragStop={this.onDragStop}

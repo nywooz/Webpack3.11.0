@@ -13,15 +13,17 @@ const style = { overflow: "hidden", clear: "both" };
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
+    this.boxRef = React.createRef();
+    this.canvasRef = React.createRef();
     this.addChildItem = this.addChildItem.bind(this);
   }
 
   addChildItem(e) {
-    debugger;
+    const box = this.boxRef.current;
 
-    const node = this.myRef.current;
+    const canvasRef = this.canvasRef.current;
 
+    canvasRef.onAddItem();
   }
 
   render() {
@@ -30,12 +32,20 @@ export default class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-11" style={style}>
-              <AddRemoveLayout />
+              <AddRemoveLayout ref={this.canvasRef} />
             </div>
 
             <div className="col-1" style={style}>
               {Icons.map((item, i) => {
-                return <Box key={i} name={item} icon={item} ref={this.myRef} />;
+                return (
+                  <Box
+                    key={i}
+                    name={item}
+                    icon={item}
+                    ref={this.boxRef}
+                    onClick={this.addChildItem}
+                  />
+                );
               })}
             </div>
           </div>

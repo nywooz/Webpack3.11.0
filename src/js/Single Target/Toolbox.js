@@ -46,7 +46,7 @@ export default class Box extends Component {
     const opacity = isDragging ? 0.4 : 1;
 
     return connectDragSource(
-      <div style={{ ...style, opacity }}>
+      <div style={{ ...style, opacity }} onClick={this.props.onClick}>
         <div style={icon_div_style}>
           <i className={"fas " + name + " fa-3x "} />
         </div>
