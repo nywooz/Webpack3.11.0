@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Hoc from "./Hoc1";
 
+
+
 const App = ({ name }) => (
   <div className="container-fluid">
     <h2> Higher-Order Components</h2>
@@ -22,6 +24,7 @@ const App = ({ name }) => (
 
     <div>
       <Hoc />
+      
     </div>
   </div>
 );
