@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-const App = () => (
+const App = ({ name }) => (
   <div className="container-fluid">
     <h2> Higher-Order Components</h2>
     <p>
-      A higher-order component (HOC) is an advanced technique in React for
+      A higher-order component ({name}) is an advanced technique in React for
       reusing component logic. HOCs are not part of the React API, per se. They
       are a pattern that emerges from React’s compositional nature
     </p>
@@ -23,40 +23,32 @@ const App = () => (
 
 export default App;
 
-class CommentList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {
-      // "DataSource" is some global data source
-      comments: DataSource.getComments()
-    };
-  }
+/**
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
-  componentDidMount() {
-    // Subscribe to changes
-    DataSource.addChangeListener(this.handleChange);
-  }
+//  A component that receives props and renders the children.
+const Username = props => <div>{props.children}</div>;
 
-  componentWillUnmount() {
-    // Clean up listener
-    DataSource.removeChangeListener(this.handleChange);
-  }
-
-  handleChange() {
-    // Update component state whenever the data source changes
-    this.setState({
-      comments: DataSource.getComments()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.comments.map(comment => (
-          <Comment comment={comment} key={comment.id} />
-        ))}
-      </div>
-    );
-  }
-}
+//
+//  A higher-order component that transforms and returns "usernames" in uppercase
+//
+//  This higher-order component receives a "WrappedComponent" as an argument.
+//  Then it returns "new" component with props passed to it creating a React element
+//
+const hoc = WrappedComponent => props => {
+  debugger;
+  return (
+    <div>
+      <WrappedComponent {...props}>
+        {props.children.toUpperCase()}
+      </WrappedComponent>
+    </div>
+  );
+};

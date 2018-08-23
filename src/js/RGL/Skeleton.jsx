@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
 import AddRemoveLayout from "./Dynamic-add-remove";
-import Toolbox from "./Drag-Toolbox";
 
 import { DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
@@ -14,6 +13,15 @@ const style = { overflow: "hidden", clear: "both" };
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+    this.myRef = React.createRef();
+    this.addChildItem = this.addChildItem.bind(this);
+  }
+
+  addChildItem(e) {
+    debugger;
+
+    const node = this.myRef.current;
+
   }
 
   render() {
@@ -26,11 +34,9 @@ export default class App extends React.Component {
             </div>
 
             <div className="col-1" style={style}>
-
               {Icons.map((item, i) => {
-                return <Box key={i} name={item} icon={item} />
+                return <Box key={i} name={item} icon={item} ref={this.myRef} />;
               })}
-              
             </div>
           </div>
         </div>
@@ -41,7 +47,6 @@ export default class App extends React.Component {
 
 // import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
 // ReactDOM.render(<AddRemoveLayout />, rootEl);
-
 
 const Icons = [
   "fa-chart-pie",
