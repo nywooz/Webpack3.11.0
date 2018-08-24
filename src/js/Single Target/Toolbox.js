@@ -12,14 +12,22 @@ const style = {
   float: "left"
 };
 
+//http://react-dnd.github.io/react-dnd/docs-drag-source.html
 const boxSource = {
   beginDrag(props) {
+    console.log("DnD: beginDrag");
     return {
       name: props.name
     };
   },
 
+  isDragging(props, monitor) {
+    console.log("DnD: isDragging");
+  },
+
   endDrag(props, monitor) {
+    console.log("DnD: endDrag");
+
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
 
@@ -36,7 +44,7 @@ const boxSource = {
 export default class Box extends Component {
   static propTypes = {
     connectDragSource: PropTypes.func.isRequired,
-    isDragging: PropTypes.bool.isRequired,
+    //isDragging: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired
   };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 const preload = {
   data: [
     {
@@ -74,8 +75,8 @@ const Location = props => {
                 .toUpperCase()
                 .indexOf(searchTerm.toUpperCase()) >= 0
           )
-          .map(location => (
-            <LocationCard key={location.id} {...location} />
+          .map((location,i) => (
+            <LocationCard key={i} {...location} />
           ))}
       </div>
     </div>

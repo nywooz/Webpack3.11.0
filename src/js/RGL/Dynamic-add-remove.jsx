@@ -3,8 +3,6 @@ import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-
-
 import Dustbin from "../Single Target/Dustbin";
 
 /**
@@ -59,7 +57,6 @@ export default class AddRemoveLayout extends React.PureComponent {
     const i = el.add ? "+" : el.i;
     return (
       <div key={i} data-grid={el}>
-        <Dustbin2>
           {el.add ? (
             <span
               className="add text"
@@ -78,7 +75,6 @@ export default class AddRemoveLayout extends React.PureComponent {
           >
             x
           </span>
-        </Dustbin2>
       </div>
     );
   }
@@ -137,6 +133,15 @@ export default class AddRemoveLayout extends React.PureComponent {
     // this.onAddItem();
   }
 
+  html_onDragOver(e) {
+    console.log("html_onDragOver");
+  }
+
+  preventDefault(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   html_onDrop(e) {
     console.log("html_onDrop");
 
@@ -169,11 +174,14 @@ export default class AddRemoveLayout extends React.PureComponent {
       <div>
         <button onClick={this.onAddItem}>Add Item</button>
 
+        {/* 
         <Dustbin2 dropCallback={this.toolboxDrop}> </Dustbin2>
+        */}
 
         <div
+          id="Sanjeev"
           onDragEnter={e => this.html_onDragEnter(e)}
-          onDragOver={this.preventDefault}
+          onDragOver={e => this.preventDefault(e)}
           onDrop={e => this.html_onDrop(e)}
         >
           <ResponsiveReactGridLayout
