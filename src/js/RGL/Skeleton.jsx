@@ -6,7 +6,7 @@ import AddRemoveLayout from "./Dynamic-add-remove";
 import { DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
 import Dustbin from "../Single Target/Dustbin";
-import Box from "../Single Target/Toolbox";
+import Toolbox from "../Single Target/Toolbox";
 
 const style = { overflow: "hidden", clear: "both" };
 
@@ -38,7 +38,7 @@ export default class App extends React.Component {
             <div className="col-1" style={style}>
               {icons.map((item, i) => {
                 return (
-                  <Box
+                  <Toolbox
                     key={i}
                     name={item}
                     icon={item}
@@ -63,5 +63,10 @@ const icons = [
   "fa-chart-line",
   "fa-chart-bar",
   "fa-chart-area",
-  "fa-font"
+  "fa-font",
+  "fa-image",
+  "fa-list",
+  "fa-table",
+  "fa-tachometer-alt",
+  "fa-layer-group"
 ];

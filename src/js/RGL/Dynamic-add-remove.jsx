@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
+const originalLayout = getFromLS("items") || [];
 
 import Dustbin from "../Single Target/Dustbin";
 
@@ -9,27 +10,32 @@ import Dustbin from "../Single Target/Dustbin";
  * This layout demonstrates how to use a grid with a dynamic number of elements.
  */
 
-const defaultProps = {
-  className: "layout",
-  cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-  rowHeight: 100
-};
+import { get_endDragElement } from "../Single Target/Toolbox";
 
 export default class AddRemoveLayout extends React.PureComponent {
+  static defaultProps = {
+    className: "layout",
+    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
+    rowHeight: 80
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      items: [0, 1, 2].map(function(i, key, list) {
-        return {
-          i: i.toString(),
-          x: i * 2,
-          y: 0,
-          w: 2,
-          h: 2,
-          add: i === (list.length - 1).toString()
-        };
-      }),
+      items: originalLayout,
+
+      // items: [0, 1, 2].map(function(i, key, list) {
+      //   return {
+      //     name: i.toString(),
+      //     i: i.toString(),
+      //     x: i,
+      //     y: 0,
+      //     w: 1,
+      //     h: 1,
+      //     add: i === (list.length - 1).toString()
+      //   };
+      // }),
       newCounter: 0
     };
     this.canvasRef = React.createRef();
@@ -57,39 +63,42 @@ export default class AddRemoveLayout extends React.PureComponent {
     const i = el.add ? "+" : el.i;
     return (
       <div key={i} data-grid={el}>
-          {el.add ? (
-            <span
-              className="add text"
-              onClick={this.onAddItem}
-              title="You can add an item by clicking here, too."
-            >
-              Add +
-            </span>
-          ) : (
-            <span className="text">{i}</span>
-          )}
+        {el.add ? (
           <span
-            className="remove"
-            style={removeStyle}
-            onClick={this.onRemoveItem.bind(this, i)}
+            className="add text"
+            onClick={this.onAddItem}
+            title="You can add an item by clicking here, too."
           >
-            x
+            Add +
           </span>
+        ) : (
+          <span className="text">
+            {i} {el.name && el.name != i ? " " + el.name : ""}
+          </span>
+        )}
+        <span
+          className="remove"
+          style={removeStyle}
+          onClick={this.onRemoveItem.bind(this, i)}
+        >
+          x
+        </span>
       </div>
     );
   }
 
-  onAddItem() {
+  onAddItem(name) {
     /*eslint no-console: 0*/
     console.log("adding", "n" + this.state.newCounter);
     this.setState({
       // Add a new item. It must have a unique key!
       items: this.state.items.concat({
+        name: name ? name : "",
         i: "n" + this.state.newCounter,
-        x: (this.state.items.length * 2) % (this.state.cols || 12),
+        x: this.state.items.length % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
-        w: 2,
-        h: 2
+        w: 1,
+        h: 1
       }),
       // Increment the counter to ensure key is always unique.
       newCounter: this.state.newCounter + 1
@@ -109,6 +118,7 @@ export default class AddRemoveLayout extends React.PureComponent {
       ? this.props.onLayoutChange(layout)
       : null;
     this.setState({ layout: layout });
+    saveToLS("items", layout);
   }
 
   onRemoveItem(i) {
@@ -127,8 +137,7 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   html_onDragEnter(e) {
-    e.preventDefault();
-    e.stopPropagation();
+    this.preventDefault(e);
     console.log("html_onDragEnter");
     // this.onAddItem();
   }
@@ -143,9 +152,11 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 
   html_onDrop(e) {
+    const props = get_endDragElement();
+    props ? console.log(props.name) : null;
     console.log("html_onDrop");
 
-    this.onAddItem();
+    this.onAddItem(props.name);
   }
 
   // Calls on each drag movement.
@@ -172,9 +183,9 @@ export default class AddRemoveLayout extends React.PureComponent {
   render() {
     return (
       <div>
+        {/*
         <button onClick={this.onAddItem}>Add Item</button>
-
-        {/* 
+         
         <Dustbin2 dropCallback={this.toolboxDrop}> </Dustbin2>
         */}
 
@@ -204,6 +215,28 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 }
 
+function getFromLS(key) {
+  let ls = {};
+  if (global.localStorage) {
+    try {
+      ls = JSON.parse(global.localStorage.getItem("rgl-7")) || {};
+    } catch (e) {
+      /*Ignore*/
+    }
+  }
+  return ls[key];
+}
+
+function saveToLS(key, value) {
+  if (global.localStorage) {
+    global.localStorage.setItem(
+      "rgl-7",
+      JSON.stringify({
+        [key]: value
+      })
+    );
+  }
+}
 /**
  *  Dustbin2
  *

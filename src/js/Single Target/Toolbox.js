@@ -16,6 +16,7 @@ const style = {
 const boxSource = {
   beginDrag(props) {
     console.log("DnD: beginDrag");
+    set_endDragElement(props);
     return {
       name: props.name
     };
@@ -23,10 +24,15 @@ const boxSource = {
 
   isDragging(props, monitor) {
     console.log("DnD: isDragging");
+    // set_endDragElement(props);
+    // console.log(props.name);
   },
 
   endDrag(props, monitor) {
     console.log("DnD: endDrag");
+    set_endDragElement("undefined");
+
+    // set_endDragElement(props);
 
     const item = monitor.getItem();
     const dropResult = monitor.getDropResult();
@@ -54,7 +60,11 @@ export default class Box extends Component {
     const opacity = isDragging ? 0.4 : 1;
 
     return connectDragSource(
-      <div style={{ ...style, opacity }} onClick={this.props.onClick}>
+      <div
+        style={{ ...style, opacity }}
+        //onDoubleClick={this.props.onClick}
+        onClick={this.props.onClick}
+      >
         <div style={icon_div_style}>
           <i className={"fas " + name + " fa-3x "} />
         </div>
@@ -67,3 +77,13 @@ const icon_div_style = {
   width: "fit-content",
   background: "#eaeaea"
 };
+
+let endDragElementProps;
+
+export function get_endDragElement() {
+  return endDragElementProps;
+}
+
+function set_endDragElement(props) {
+  endDragElementProps = props;
+}
