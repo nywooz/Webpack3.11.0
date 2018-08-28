@@ -1,90 +1,43 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import React, { Component } from "react";
+import { render } from "react-dom";
 import ReactDOM from "react-dom";
 
-//import TileForm from "./form/Tile";
-//import { tileData } from "./data/data";
-//import Dnd from "./React DnD/01 Dustbin/Copy or Move/index";
-//import Dnd from "./React DnD/01 Dustbin/Multiple Targets/index";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 
-function findMappedDataFeedCols(mappedColumns, dataFeedCols) {
-  return mappedColumns.map((item, i, array) => {
-    return {
-      ...item,
-      ...{
-        text: item.datasource.columnName
-      },
-      ...{
-        id: dataFeedCols.find((it, i) => it.Name === item.datasource.columnName)
-          .ColumnIndex
-      },
-      ...{
-        mappedDataFeedInfo: dataFeedCols.find(
-          (it, i) => it.Name === item.datasource.columnName
-        )
-      }
-    };
-  });
-}
+// class App extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       open: true
+//     };
+//   }
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: true
-    };
-  }
+//   render() {
+//     return <p >test</p>;
 
-  render() {
-    // const { props } = this;
-    // const modal_root = document.querySelector("#modal-root");
-    // const tableData = tileData[0];
+//   }
+// }
 
-    // const chartType = tableData.type;
-    // const dataFeedCols = tableData.dataSet.Columns || [];
+// ReactDOM.render(<App />, document.querySelector("#bodyRow"));
 
-    // const bins = [
-    //   {
-    //     name: "mappedColumns",
-    //     text: "mapped",
-    //     box: findMappedDataFeedCols(chartType.table.columns, dataFeedCols)
-    //   },
-    //   {
-    //     name: "sortedColumns",
-    //     text: "sorted",
-    //     box: findMappedDataFeedCols(chartType.table.sort, dataFeedCols)
-    //   }
-    // ];
+import HighchartApp from "./Chart/Demo/HighChart";
+const highchart_Ele = document.querySelector("#highchart");
+render(<HighchartApp />, highchart_Ele);
 
-    // const cols = [
-    //   {
-    //     name: "datafeed",
-    //     text: "Data Feed",
-    //     box: dataFeedCols.map((item, i, array) => {
-    //       return {
-    //         ...{ name: item.Name },
-    //         ...{ text: item.Name },
-    //         ...{ id: item.ColumnIndex }
-    //       };
-    //     })
-    //   }
-    // ];
+import HighchartApp2 from "./Chart/Demo/HighChart2";
+const highchart_Ele2 = document.querySelector("#highchart2");
+render(<HighchartApp2 />, highchart_Ele2);
 
-    //return <Dnd boxes={cols} bins={bins} />;
-    return <p >test</p>;
 
-    return (
-        <TileForm
-          fullscreen={true}
-          modal_root={modal_root}
-          modal={false}
-          autoScrollBodyContent={true}
-          data={tableData}
-          open={true}
-          title={tableData ? "Edit Tile" : "New Tile"}
-        />
-    );
-  }
-}
 
-ReactDOM.render(<App />, document.querySelector("#bodyRow"));
+
+import HighmapApp from "./Chart/Demo/Highmaps";
+const highmap_Ele = document.querySelector("#highmap");
+render(<HighmapApp />, highmap_Ele);
+
+import HighstockApp from "./Chart/Demo/Highstock";
+const highstock_Ele = document.querySelector("#highstock");
+render(<HighstockApp />, highstock_Ele);

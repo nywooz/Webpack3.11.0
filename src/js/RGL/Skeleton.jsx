@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 
-import AddRemoveLayout from "./Dynamic-add-remove";
+import AddRemoveLayout from "./Dynamic-add-remove.2";
 
 import { DragDropContextProvider } from "react-dnd";
 import HTML5Backend from "react-dnd-html5-backend";
@@ -55,8 +55,6 @@ export default class App extends React.Component {
   }
 }
 
-// import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
-// ReactDOM.render(<AddRemoveLayout />, rootEl);
 
 const icons = [
   "fa-chart-pie",

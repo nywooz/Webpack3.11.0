@@ -3,23 +3,31 @@ import { render } from "react-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const options = {
-  title: {
-    text: "My chart"
-  },
-  series: [
-    {
-      data: [1, 2, 3]
-    }
-  ]
-};
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { data: [] };
+    setInterval(
+      () => this.setState({ data: [...Array(3)].map(Math.random) }),
+      500
+    );
+  }
 
-const App = () => (
-  <div>
-    <HighchartsReact highcharts={Highcharts} options={options} />
-  </div>
-);
+  render() {
+    const cb = function() {};
+    return (
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={{
+          series: [{ data: this.state.data }],
+          chart: {
+            type: "area",
+            animation: true,
 
-export default App;
-
-// render(<App />, document.getElementById('root'))
+            events: { load: cb }
+          }
+        }}
+      />
+    );
+  }
+}
