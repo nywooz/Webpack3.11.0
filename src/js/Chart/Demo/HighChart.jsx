@@ -5,7 +5,7 @@ import HighchartsReact from "highcharts-react-official";
 
 const options = {
   title: {
-    text: "My chart"
+    text: "My chart" 
   },
   series: [
     {
