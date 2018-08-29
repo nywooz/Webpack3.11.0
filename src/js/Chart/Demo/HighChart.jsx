@@ -2,15 +2,20 @@ import React from "react";
 import { render } from "react-dom";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+let myVar = 0;
 
 export default class App extends React.Component {
   constructor() {
     super();
     this.state = { data: [] };
-    setInterval(
+    myVar=setInterval(
       () => this.setState({ data: [...Array(3)].map(Math.random) }),
-      500
+      1500
     );
+  }
+
+  componentWillUnmount (){
+    clearInterval(myVar);
   }
 
   render() {

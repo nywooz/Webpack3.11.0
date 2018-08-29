@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { WidthProvider, Responsive } from "react-grid-layout";
 import _ from "lodash";
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
-const originalLayout = getFromLS("items") || [];
+const originalLayout = getFromLS("items", "rgl-7") || [];
 
 import Dustbin from "../Single Target/Dustbin";
+import { iconsTypeMap } from "./Skeleton";
 
 /**
  * This layout demonstrates how to use a grid with a dynamic number of elements.
@@ -41,7 +42,7 @@ export default class AddRemoveLayout extends React.PureComponent {
       //     add: i === (list.length - 1).toString()
       //   };
       // }),
-      newCounter: 0,
+      newCounter: originalLayout.length.toString(),
       selected: ""
     };
     this.canvasRef = React.createRef();
@@ -57,13 +58,6 @@ export default class AddRemoveLayout extends React.PureComponent {
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.onAddItem = this.onAddItem.bind(this);
     this.onBreakpointChange = this.onBreakpointChange.bind(this);
-
-    this.selectToggle = this.selectToggle.bind(this);
-  }
-
-  selectToggle(e) {
-    const tileElement = e.currentTarget;
-    console.log("selectToggle");
   }
 
   createElement(el) {
@@ -91,21 +85,55 @@ export default class AddRemoveLayout extends React.PureComponent {
         key={i}
         data-grid={el}
         className="container-fluid"
-        onClick={this.selectToggle}
       >
-        <Griditem i={i} el={el} key={i} onRemoveItem={this.onRemoveItem} />
+        <div>
+          <div className="row">
+            <div className="col-10">
+              {i} {el.name && el.name != i ? " " + el.name : ""}
+            </div>
+            <div
+              className="col-2"
+              style={removeStyle}
+              onClick={this.onRemoveItem.bind(this, i)}
+            >
+              x
+            </div>
+          </div>
+
+          <div className="row" style={contentStyle}>
+            {el.add ? (
+              <div
+                className="add text"
+                onClick={this.onAddItem}
+                title="You can add an item by clicking here, too."
+              >
+                Add +
+              </div>
+            ) : (
+              <div style={contentStyle}>
+                <Highchart1 />
+              </div>
+            )}
+          </div>
+        </div>{" "}
       </div>
     );
   }
 
   onAddItem(name) {
+    const chartType = iconsTypeMap[name];
+    console.log(chartType);
+    const uid = newGUID();
+
     /*eslint no-console: 0*/
     console.log("adding", "n" + this.state.newCounter);
     this.setState({
       // Add a new item. It must have a unique key!
       items: this.state.items.concat({
+        uid: uid,
+        type: chartType,
         name: name ? name : "",
-        i: "n" + this.state.newCounter,
+        i: "n" + this.state.items.length.toString(),
         x: this.state.items.length % (this.state.cols || 12),
         y: Infinity, // puts it at the bottom
         w: 1,
@@ -129,16 +157,15 @@ export default class AddRemoveLayout extends React.PureComponent {
       ? this.props.onLayoutChange(layout)
       : null;
     this.setState({ layout: layout });
-    saveToLS("items", layout);
+    saveToLS("items", layout,"rgl-7");
   }
 
   onRemoveItem(i) {
     console.log("removing", i);
 
     const items = _.reject(this.state.items, { i: i });
-    
-    saveToLS("items", items);
 
+    saveToLS("items", items,"rgl-7");
     this.setState({ items: items });
   }
 
@@ -240,25 +267,26 @@ export default class AddRemoveLayout extends React.PureComponent {
   }
 }
 
-function getFromLS(key) {
+function getFromLS(prop, key) {
   let ls = {};
   if (global.localStorage) {
     try {
-      ls = JSON.parse(global.localStorage.getItem("rgl-7")) || {};
+      ls = JSON.parse(global.localStorage.getItem(key)) || {};
     } catch (e) {
       /*Ignore*/
     }
   }
-  return ls[key];
+  return ls[prop];
 }
 
-function saveToLS(key, value) {
+function saveToLS(valueKey, value, key) {
   if (global.localStorage) {
     global.localStorage.setItem(
-      "rgl-7",
+      key,
       JSON.stringify({
-        [key]: value
+        [valueKey]: value
       })
     );
   }
 }
+

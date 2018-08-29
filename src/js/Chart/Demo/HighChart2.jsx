@@ -1,6 +1,6 @@
 import React from "react";
-import { render } from "../../../../../../Users/nwoozeer/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/react-dom";
-import Highcharts from "../../../../../../Users/nwoozeer/AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/highcharts";
+import { render } from "react-dom";
+import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import data from "highcharts/modules/data";
 

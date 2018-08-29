@@ -68,7 +68,7 @@ const icons = [
   "fa-layer-group"
 ];
 
-const iconsTypeMap = {
+export const iconsTypeMap = {
   "fa-chart-pie": "pie",
   "fa-chart-line": "line",
   "fa-chart-bar": "bar",
