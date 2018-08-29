@@ -23,7 +23,6 @@ export default class App extends React.Component {
           chart: {
             type: "area",
             animation: true,
-
             events: { load: cb }
           }
         }}

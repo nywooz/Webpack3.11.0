@@ -15,6 +15,8 @@ import { get_endDragElement } from "../Single Target/Toolbox";
 import Highchart1 from "../Chart/Demo/HighChart";
 import Highchart2 from "../Chart/Demo/HighChart2";
 
+import Griditem from "./Griditem";
+
 export default class AddRemoveLayout extends React.PureComponent {
   static defaultProps = {
     className: "layout",
@@ -85,39 +87,13 @@ export default class AddRemoveLayout extends React.PureComponent {
 
     return (
       <div
+        style={{ height: "100%", width: "100%", position: "absolute" }}
         key={i}
         data-grid={el}
         className="container-fluid"
         onClick={this.selectToggle}
       >
-        <div className="row">
-          <div className="col-10">
-            {i} {el.name && el.name != i ? " " + el.name : ""}
-          </div>
-          <div
-            className="col-2"
-            style={removeStyle}
-            onClick={this.onRemoveItem.bind(this, i)}
-          >
-            x
-          </div>
-        </div>
-
-        <div className="row" style={contentStyle}>
-          {el.add ? (
-            <div
-              className="add text"
-              onClick={this.onAddItem}
-              title="You can add an item by clicking here, too."
-            >
-              Add +
-            </div>
-          ) : (
-            <div style={contentStyle}>
-              <Highchart1 />
-            </div>
-          )}
-        </div>
+        <Griditem i={i} el={el} key={i} onRemoveItem={this.onRemoveItem} />
       </div>
     );
   }
@@ -158,7 +134,12 @@ export default class AddRemoveLayout extends React.PureComponent {
 
   onRemoveItem(i) {
     console.log("removing", i);
-    this.setState({ items: _.reject(this.state.items, { i: i }) });
+
+    const items = _.reject(this.state.items, { i: i });
+    
+    saveToLS("items", items);
+
+    this.setState({ items: items });
   }
 
   toolboxDrop() {
@@ -213,9 +194,13 @@ export default class AddRemoveLayout extends React.PureComponent {
     console.log("rgl: onResizeStop");
     debugger;
 
-    newItem
+    newItem;
 
-    
+    // chart.setSize(null);
+
+    // this.refs.chart.resize(width, height);
+
+    // chart.setSize(this.offsetWidth - 20, this.offsetHeight - 20, false);
   }
 
   onWidthChange(layout, oldItem, newItem, placeholder, e, element) {}

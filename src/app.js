@@ -21,8 +21,7 @@ const rootEl = document.getElementById("root");
 //   ReactDOM.render(<Board knightPosition={knightPosition} />, rootEl)
 // );
 
-// import AddRemoveLayout from "./js/RGL/Dynamic-add-remove";
-// ReactDOM.render(<AddRemoveLayout />, rootEl);
+
 
 import Skeleton from "./js/RGL/Skeleton";
 ReactDOM.render(<Skeleton />, rootEl);
