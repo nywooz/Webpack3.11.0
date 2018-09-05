@@ -1,4 +1,7 @@
 # Webpack3.11.0 (will no longer maintain once i get Webpack 4.6.0 set up)
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/nywooz/Webpack3.11.0.svg)](https://greenkeeper.io/)
+
 My Webpack boilerplate
 
 ## Installation
